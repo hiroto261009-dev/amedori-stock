@@ -23,16 +23,23 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests beautifulsoup4
 
-      - name: ファイル確認
+      - name: stock.pyを探す
         run: |
           echo "=== 現在の場所 ==="
           pwd
-          echo "=== ファイル一覧 ==="
-          ls -la
-          echo "=== stock.py確認 ==="
-          ls -l stock.py
+          echo "=== stock.pyを探します ==="
+          find . -type f -name "stock.py" -print
 
-          - name: 在庫チェック
+      - name: 在庫チェック
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
-         'run'is already defined
+        run: |
+          STOCK_FILE=$(find . -type f -name "stock.py" | head -n 1)
+
+          if [ -z "$STOCK_FILE" ]; then
+            echo "ERROR: stock.py が見つかりません"
+            exit 1
+          fi
+
+          echo "実行するファイル: $STOCK_FILE"
+          python "$STOCK_FILE"
