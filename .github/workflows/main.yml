@@ -19,7 +19,9 @@ jobs:
           python-version: "3.12"
 
       - name: 必要なものをインストール
-        run: pip install requests beautifulsoup4
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests beautifulsoup4
 
       - name: ファイル確認
         run: |
@@ -27,18 +29,11 @@ jobs:
           pwd
           echo "=== ファイル一覧 ==="
           ls -la
-          echo "=== stock.pyを探す ==="
-          find . -name "stock.py" -type f
+          echo "=== stock.py確認 ==="
+          ls -l stock.py
 
       - name: 在庫チェック
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: |
-          if [ -f "stock.py" ]; then
-            python stock.py
-          elif [ -f "./amedori-stock/stock.py" ]; then
-            python ./amedori-stock/stock.py
-          else
-            echo "ERROR: stock.py が見つかりません"
-            exit 1
-          fi
+          python stock.py
