@@ -32,8 +32,7 @@ jobs:
           echo "=== stock.py確認 ==="
           ls -l stock.py
 
-      - name: 在庫チェック
+          - name: 在庫チェック
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
-        run: |
-          python stock.py
+         'run'is already defined
