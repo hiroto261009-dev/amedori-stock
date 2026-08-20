@@ -7,7 +7,7 @@ import os
 # =========================
 
 # チェックしたい商品のページURL
-PRODUCT_URL = "ここに商品のURLを入れる"
+PRODUCT_URL = "https://amenitydream.co.jp"
 
 # Discord Webhook URL
 DISCORD_WEBHOOK = os.environ.get("DISCORD_WEBHOOK")
