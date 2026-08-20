@@ -1,4 +1,3 @@
-
 name: Check Stock
 
 on:
@@ -22,7 +21,24 @@ jobs:
       - name: 必要なものをインストール
         run: pip install requests beautifulsoup4
 
+      - name: ファイル確認
+        run: |
+          echo "=== 現在の場所 ==="
+          pwd
+          echo "=== ファイル一覧 ==="
+          ls -la
+          echo "=== stock.pyを探す ==="
+          find . -name "stock.py" -type f
+
       - name: 在庫チェック
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
-        run: python stock.py
+        run: |
+          if [ -f "stock.py" ]; then
+            python stock.py
+          elif [ -f "./amedori-stock/stock.py" ]; then
+            python ./amedori-stock/stock.py
+          else
+            echo "ERROR: stock.py が見つかりません"
+            exit 1
+          fi
