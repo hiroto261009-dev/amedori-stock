@@ -30,9 +30,9 @@ jobs:
           echo "=== stock.pyを探します ==="
           find . -type f -name "stock.py" -print
 
-      - name: 在庫チェック
-        env:
-          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+     　 - name: 在庫チェック
+          env:
+            DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
           run: |
             STOCK_FILE=$(find . -type f -name "stock.py" | head -n 1)
 
