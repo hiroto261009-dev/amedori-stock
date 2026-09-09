@@ -31,6 +31,7 @@ jobs:
           find . -type f -name "stock.py" -print
       - name: 在庫チェック
          
+
        
        env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
