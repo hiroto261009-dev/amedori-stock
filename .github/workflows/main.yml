@@ -33,13 +33,13 @@ jobs:
       - name: 在庫チェック
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
-        run: |
-          STOCK_FILE=$(find . -type f -name "stock.py" | head -n 1)
+          run: |
+            STOCK_FILE=$(find . -type f -name "stock.py" | head -n 1)
 
-          if [ -z "$STOCK_FILE" ]; then
-            echo "ERROR: stock.py が見つかりません"
-            exit 1
-          fi
-
-          echo "実行するファイル: $STOCK_FILE"
-          python "$STOCK_FILE"
+            if [ -z "$STOCK_FILE ]; then
+              echo "ERROR: stock.py が見つかりません"
+              exit 1
+            fi
+            echo "実行するファイル: $STOCK_FILE"
+           python "$STOCK_FILE"                                          
+             
